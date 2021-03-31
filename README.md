@@ -12,7 +12,7 @@
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Fugiat voluptas consequatur ex beatae quas, aliquid   asperiores aperiam repellendus aspernatur officiis quod ducimus veniam alias.',
         votes: 1,
         voted: true,
-        created_at: '2021-03-30 14:04:07'
+        created_at: '2021-03-30 14:04:07',
         category: 1
     }
 ]
