@@ -1,12 +1,6 @@
 <template>
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-    <div class="mb-8">
-      <img
-        class="w-48"
-        src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png"
-        alt="Placeholder Logo"
-      />
-    </div>
+    <placeholder-logo />
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <idea-form />
       <div class="mt-5 md:mt-0 md:col-span-2">
@@ -24,10 +18,15 @@
 import CategorySelect from "../components/CategorySelect";
 import IdeaForm from "../components/IdeaForm";
 import IdeaList from "../components/IdeaList.vue";
+import PlaceholderLogo from "../components/PlaceholderLogo.vue";
 import SearchBar from "../components/SearchBar.vue";
 export default {
-  components: { IdeaForm, CategorySelect, SearchBar, IdeaList },
+  components: {
+    IdeaForm,
+    CategorySelect,
+    SearchBar,
+    IdeaList,
+    PlaceholderLogo,
+  },
 };
 </script>
-
-<style></style>
