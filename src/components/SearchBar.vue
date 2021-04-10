@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      v-model="filterby.title"
       type="text"
       name="search"
       id="search"
@@ -12,5 +13,11 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  name: "SearchBar",
+  computed: {
+    ...mapState("ideas", ["filterby"]),
+  },
+};
 </script>

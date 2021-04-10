@@ -5,7 +5,7 @@
       <idea-form />
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="flex mb-3 items-center justify-between">
-          <CategorySelect />
+          <category-filter />
           <search-bar />
         </div>
         <idea-list />
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CategorySelect from "../components/CategorySelect";
+import CategoryFilter from "../components/CategoryFilter.vue";
 import IdeaForm from "../components/IdeaForm";
 import IdeaList from "../components/IdeaList.vue";
 import PlaceholderLogo from "../components/PlaceholderLogo.vue";
@@ -23,10 +23,10 @@ import SearchBar from "../components/SearchBar.vue";
 export default {
   components: {
     IdeaForm,
-    CategorySelect,
     SearchBar,
     IdeaList,
     PlaceholderLogo,
+    CategoryFilter,
   },
 };
 </script>

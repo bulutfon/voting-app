@@ -10,10 +10,11 @@
               >Your idea</label
             >
             <input
+              v-model="newIdea.title"
               type="text"
               name="name"
               id="name"
-              placeholder="John Doe"
+              placeholder="Idea Title"
               required
               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
             />
@@ -26,6 +27,7 @@
             >
             <div class="relative">
               <select
+                v-model="newIdea.category"
                 class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
               >
                 <option>Category 1</option>
@@ -54,6 +56,7 @@
               >Description</label
             >
             <textarea
+              v-model="newIdea.description"
               rows="5"
               name="message"
               id="message"
@@ -65,6 +68,7 @@
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
           <button
+            @click="addIdea"
             type="submit"
             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
@@ -77,5 +81,14 @@
 </template>
 
 <script>
-export default {};
+import { mapActions, mapState } from "vuex";
+export default {
+  name: "IdeaForm",
+  computed: {
+    ...mapState("ideas", ["newIdea"]),
+  },
+  methods: {
+    ...mapActions("ideas", ["addIdea"]),
+  },
+};
 </script>

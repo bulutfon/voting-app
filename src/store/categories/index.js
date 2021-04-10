@@ -13,8 +13,17 @@ const state = {
       title: "Category 3",
     },
   ],
+  selectedCategory: { title: "" },
 };
-const mutations = {};
-const actions = {};
+const mutations = {
+  select: (category) => {
+    this.state.selectedCategory = category;
+  },
+};
+const actions = {
+  select: ({ commit }, payload) => {
+    commit("select", payload);
+  },
+};
 const getters = {};
 export default { namespaced: true, state, mutations, actions, getters };

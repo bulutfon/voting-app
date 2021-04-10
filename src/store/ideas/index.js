@@ -1,36 +1,34 @@
 import * as dayjs from "dayjs";
 const state = {
-  showForm: false,
   ideas: [],
   newIdea: {
     id: "",
-    title: "",
+    title: undefined,
     description: "",
     votes: 1,
     voted: true,
     created_at: "",
     category: "",
   },
-  filterby: { cat: "" },
+  filterby: { title: "" },
 };
 const mutations = {
-  toggleForm(state) {
-    state.showForm = !state.showForm;
-  },
   addIdea(state) {
-    //state.ideas.some((idea)=>)
     state.newIdea.id = state.newIdea.title.toLowerCase().replace(" ", "_");
     state.newIdea.created_at = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    /*   let now = new Date();
-    state.newIdea.created_at = now.getTime(); */
     if (state.ideas.some((idea) => idea.id === state.newIdea.id)) {
-      alert("the idea already exists");
+      alert("The idea already exists.");
+      return;
+    } else if (
+      state.ideas.some((idea) => idea.title === " " || idea.description == " ")
+    ) {
+      alert("Please fill all required fields.");
       return;
     } else {
       state.ideas.push(state.newIdea);
       state.newIdea = {
         id: "",
-        title: "",
+        title: undefined,
         description: "",
         votes: 1,
         voted: true,
@@ -48,9 +46,6 @@ const mutations = {
   },
 };
 const actions = {
-  toggleForm: ({ commit }) => {
-    commit("toggleForm");
-  },
   addIdea: ({ commit }) => {
     commit("addIdea");
   },
@@ -59,9 +54,9 @@ const actions = {
   },
 };
 const getters = {
-  filterByCat: (state) =>
-    state.filterby.cat !== ""
-      ? state.ideas.filter((idea) => idea.category.includes(state.filterby.cat))
+  filterByTitle: (state) =>
+    state.filterby.title !== ""
+      ? state.ideas.filter((idea) => idea.title.includes(state.filterby.title))
       : state.ideas,
 };
 export default { namespaced: true, state, mutations, actions, getters };

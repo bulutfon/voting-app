@@ -1,12 +1,13 @@
 <template>
   <div class="relative mr-5">
     <select
+      v-model="selectedCategory.title"
       class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-2 px-4 pr-8 rounded"
     >
       <option>All</option>
-      <option>Category 1</option>
-      <option>Category 2</option>
-      <option>Category 3</option>
+      <option v-for="category in categories" :key="category.id">{{
+        category.title
+      }}</option>
     </select>
     <div
       class="pointer-events-none absolute top-4 right-3 flex items-center px-2 text-grey-darker"
@@ -25,5 +26,14 @@
 </template>
 
 <script>
-export default {};
+import { mapActions, mapState } from "vuex";
+export default {
+  name: "CategorySelect",
+  computed: {
+    ...mapState("categories", ["categories", "selectedCategory"]),
+  },
+  methods: {
+    ...mapActions("categories", ["select"]),
+  },
+};
 </script>
