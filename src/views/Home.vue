@@ -1,0 +1,18 @@
+<template>
+  <div>
+    <div class="mb-8">
+      <img
+        class="w-48"
+        src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png"
+        alt="Placeholder Logo"
+      />
+    </div>
+    home
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>
