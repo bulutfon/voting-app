@@ -15,10 +15,10 @@
       </div>
       <div class="flex flex-col p-3 justify-between items-between">
         <div class="py-2">
-          <a
+          <router-link
+            :to="{ name: 'Idea', params: { clickedIdea: idea, id: idea.id } }"
             class="capitalize text-3xl text-blue-500 hover:text-blue-800"
-            href="#"
-            >{{ idea.title }}</a
+            >{{ idea.title }}</router-link
           >
           <p class="capitalize text-gray-500 text-sm">
             {{ idea.description }}

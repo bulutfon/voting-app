@@ -39,11 +39,14 @@ const mutations = {
   },
   voteHandler(state, payload) {
     state.ideas = state.ideas.map((item) =>
-      item.title === payload.title
+      item.id === payload.id
         ? { ...item, voted: !item.voted, votes: item.votes === 0 ? 1 : 0 }
         : item
     );
   },
+  /* ideaPageVoteHandler(state,payload){
+
+  } */
 };
 const actions = {
   addIdea: ({ commit }) => {
