@@ -62,7 +62,11 @@ const getters = {
               state.filterby.category === "All" ||
               item.category === state.filterby.category
           )
-          .filter((idea) => idea.title.includes(state.filterby.title))
+          .filter((idea) =>
+            idea.title
+              .toLowerCase()
+              .includes(state.filterby.title.toLowerCase())
+          )
       : state.ideas,
 };
 export default { namespaced: true, state, mutations, actions, getters };
