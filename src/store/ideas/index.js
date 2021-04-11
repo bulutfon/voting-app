@@ -8,9 +8,9 @@ const state = {
     votes: 1,
     voted: true,
     created_at: "",
-    category: "",
+    category: "Category 1",
   },
-  filterby: { title: "" },
+  filterby: { title: "", category: "All" },
 };
 const mutations = {
   addIdea(state) {
@@ -33,7 +33,7 @@ const mutations = {
         votes: 1,
         voted: true,
         created_at: "",
-        category: "",
+        category: "Category 1",
       };
     }
   },
@@ -54,9 +54,15 @@ const actions = {
   },
 };
 const getters = {
-  filterByTitle: (state) =>
-    state.filterby.title !== ""
-      ? state.ideas.filter((idea) => idea.title.includes(state.filterby.title))
+  filteredIdeas: (state) =>
+    state.filterby.title !== "" || state.filterby.category !== ""
+      ? state.ideas
+          .filter(
+            (item) =>
+              state.filterby.category === "All" ||
+              item.category === state.filterby.category
+          )
+          .filter((idea) => idea.title.includes(state.filterby.title))
       : state.ideas,
 };
 export default { namespaced: true, state, mutations, actions, getters };

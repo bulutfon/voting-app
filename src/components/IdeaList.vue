@@ -1,6 +1,6 @@
 <template>
   <div class="shadow sm:rounded-md sm:overflow-hidden mb-5">
-    <div v-for="idea in filterByTitle" :key="idea.title" class="bg-white flex">
+    <div v-for="idea in filteredIdeas" :key="idea.title" class="bg-white flex">
       <div
         class="bg-white flex justify-center flex-col items-center justify-center m-3 border"
       >
@@ -15,10 +15,12 @@
       </div>
       <div class="flex flex-col p-3 justify-between items-between">
         <div class="py-2">
-          <a class="text-3xl text-blue-500 hover:text-blue-800" href="#">{{
-            idea.title
-          }}</a>
-          <p class="text-gray-500 text-sm">
+          <a
+            class="capitalize text-3xl text-blue-500 hover:text-blue-800"
+            href="#"
+            >{{ idea.title }}</a
+          >
+          <p class="capitalize text-gray-500 text-sm">
             {{ idea.description }}
           </p>
         </div>
@@ -34,7 +36,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import * as dayjs from "dayjs";
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -51,8 +53,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("ideas", ["ideas", "filterby"]),
-    ...mapGetters("ideas", ["filterByTitle"]),
+    ...mapGetters("ideas", ["filteredIdeas"]),
   },
   methods: {
     ...mapActions("ideas", ["voteHandler"]),

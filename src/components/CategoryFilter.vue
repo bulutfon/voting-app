@@ -1,7 +1,7 @@
 <template>
   <div class="relative mr-5">
     <select
-      v-model="selectedCategory.title"
+      v-model="filterby.category"
       class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-2 px-4 pr-8 rounded"
     >
       <option>All</option>
@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "CategorySelect",
+
   computed: {
-    ...mapState("categories", ["categories", "selectedCategory"]),
+    ...mapState("categories", ["categories"]),
+    ...mapState("ideas", ["filterby"]),
   },
-  methods: {
-    ...mapActions("categories", ["select"]),
-  },
+  methods: {},
 };
 </script>

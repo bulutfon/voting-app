@@ -7,7 +7,7 @@
             <label
               for="name"
               class="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-              >Your idea</label
+              >Idea Title</label
             >
             <input
               v-model="newIdea.title"
@@ -16,7 +16,7 @@
               id="name"
               placeholder="Idea Title"
               required
-              class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+              class="capitalize w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
             />
           </div>
           <div>
@@ -30,9 +30,9 @@
                 v-model="newIdea.category"
                 class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
               >
-                <option>Category 1</option>
-                <option>Category 2</option>
-                <option>Category 3</option>
+                <option v-for="category in categories" :key="category.id">{{
+                  category.title
+                }}</option>
               </select>
               <div
                 class="pointer-events-none absolute top-4 right-3 flex items-center px-2 text-grey-darker"
@@ -61,7 +61,7 @@
               name="message"
               id="message"
               placeholder="Description"
-              class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+              class="capitalize w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
               required
             ></textarea>
           </div>
@@ -86,6 +86,7 @@ export default {
   name: "IdeaForm",
   computed: {
     ...mapState("ideas", ["newIdea"]),
+    ...mapState("categories", ["categories"]),
   },
   methods: {
     ...mapActions("ideas", ["addIdea"]),
