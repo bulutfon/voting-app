@@ -20,6 +20,7 @@
     <div class="flex flex-col p-3 justify-between items-between">
       <div class="py-2">
         <router-link
+          v-if="idea.id"
           :to="{ name: 'Idea', params: { clickedIdea: idea, id: idea.id } }"
           @click.native="setClickedItem(idea)"
           class="uppercase text-3xl text-blue-500 hover:text-blue-800"
@@ -31,7 +32,7 @@
       </div>
       <div class="text-gray-600 flex text-sm">
         <div>
-          <span class="normal-case"> {{ from(idea.created_at) }} </span>
+          <span class="normal-case"> {{ timeago }} </span>
           <span class="font-bold">{{ idea.category }}</span> category.
         </div>
       </div>
@@ -50,14 +51,13 @@ export default {
     idea: Object,
   },
   data() {
-    return {
-      now() {
-        return dayjs();
-      },
-      from(date) {
-        return dayjs(date).from(this.now());
-      },
-    };
+    return { timeago: "", timer: null };
+  },
+  mounted() {
+    this.createTimer();
+  },
+  beforeDestroy() {
+    this.clearTimer();
   },
   methods: {
     ...mapActions("ideas", [
@@ -65,6 +65,31 @@ export default {
       "setClickedItem",
       "ideaPageVoteHandler",
     ]),
+    updateTimeAgo() {
+      this.timeago = this.from(this.idea.created_at);
+    },
+    createTimer() {
+      this.$nextTick(() => {
+        this.updateTimeAgo();
+        this.timer = setInterval(this.updateTimeAgo, 60 * 1000);
+      });
+    },
+    clearTimer() {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+    },
+    now() {
+      return dayjs();
+    },
+    from(date) {
+      return dayjs(date).from(this.now());
+    },
+  },
+  watch: {
+    idea: function() {
+      this.updateTimeAgo();
+    },
   },
   computed: {
     ...mapState("ideas", ["clickedIdea"]),
