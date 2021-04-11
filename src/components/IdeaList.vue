@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 import IdeaCard from "./IdeaCard.vue";
 export default {
@@ -17,9 +17,6 @@ export default {
   name: "IdeaList",
   computed: {
     ...mapGetters("ideas", ["filteredIdeas"]),
-  },
-  methods: {
-    ...mapActions("ideas", ["voteHandler"]),
   },
 };
 </script>

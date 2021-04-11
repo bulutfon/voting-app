@@ -29,11 +29,9 @@
 import { mapState } from "vuex";
 export default {
   name: "CategorySelect",
-
   computed: {
     ...mapState("categories", ["categories"]),
     ...mapState("ideas", ["filterby"]),
   },
-  methods: {},
 };
 </script>

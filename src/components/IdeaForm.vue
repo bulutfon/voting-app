@@ -57,6 +57,7 @@
             >
             <textarea
               v-model="newIdea.description"
+              @keydown="enterHandler($event)"
               rows="5"
               name="message"
               id="message"
@@ -90,6 +91,9 @@ export default {
   },
   methods: {
     ...mapActions("ideas", ["addIdea"]),
+    enterHandler(event) {
+      event.keyCode === 13 && this.addIdea();
+    },
   },
 };
 </script>
