@@ -11,6 +11,7 @@ const state = {
     category: "Category 1",
   },
   filterby: { title: "", category: "All" },
+  clickedIdea: {},
 };
 const mutations = {
   addIdea(state) {
@@ -44,9 +45,19 @@ const mutations = {
         : item
     );
   },
-  /* ideaPageVoteHandler(state,payload){
-
-  } */
+  setClickedItem(state, payload) {
+    state.clickedIdea = payload;
+  },
+  ideaPageVoteHandler(state) {
+    state.clickedIdea =
+      state.clickedIdea.voted === true
+        ? {
+            ...state.clickedIdea,
+            voted: false,
+            votes: 0,
+          }
+        : { ...state.clickedIdea, voted: true, votes: 1 };
+  },
 };
 const actions = {
   addIdea: ({ commit }) => {
@@ -54,6 +65,12 @@ const actions = {
   },
   voteHandler: ({ commit }, payload) => {
     commit("voteHandler", payload);
+  },
+  ideaPageVoteHandler: ({ commit }, payload) => {
+    commit("ideaPageVoteHandler", payload);
+  },
+  setClickedItem: ({ commit }, payload) => {
+    commit("setClickedItem", payload);
   },
 };
 const getters = {
